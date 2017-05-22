@@ -1,0 +1,18 @@
+<maps>
+    <start_location>
+     <lat>41.8507300</lat>
+     <lng>-87.6512600</lng>
+    </start_location>
+    <distance>
+     <value>207</value>
+     <text>0.1 mi</text>
+    </distance>
+    <duration>
+     <value>19</value>
+     <text>1 min</text>
+    </duration>	
+    <end_location>
+     <lat>41.8525800</lat>
+     <lng>-87.6514100</lng>
+    </end_location>
+</maps>
