@@ -24,7 +24,11 @@ ReadXml::ReadXml(QWidget *parent) :
     QTextStream leer(&salida);
     salida.close();
 */
-    connect(ui->pbAbrir, SIGNAL(clicked()), this, SLOT(slot_abrirXML()));
+    manager = new QNetworkAccessManager;
+    ReadXml dataxml;// DataManager data cuando cambie el nombre de la clase a la correspondiente
+    connect(ui->pbAbrir, SIGNAL(clicked()), this, SLOT(slot_abrirXML())); //Cargar desde disco archivo XML
+    connect(manager,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_respuesta(QNetworkReply*))); // obtener desde URL archivo XML
+    connect(&dataxml,SIGNAL(signaTiempo(QString)),this,SLOT()));
 
 }
 
@@ -103,5 +107,10 @@ void ReadXml::slot_abrirXML()
         }
        // QByteArray linea = file.readAll();
         //qDebug() << linea.size();
+
+}
+
+void ReadXml::slot_xmlDownload(QNetworkReply *reply){
+
 
 }
