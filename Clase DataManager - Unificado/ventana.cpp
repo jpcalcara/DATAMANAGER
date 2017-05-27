@@ -14,8 +14,10 @@ Ventana::Ventana(QWidget *parent) :
             this, SLOT(slot_coordenadasRecibidas(QList<QString>)));
     connect(dataManager,SIGNAL(receivedSites(QList<QString>)),
             this,SLOT(slot_lugaresRecibidos(QList<QString>)));
-
-    //agregara aca los connects correspondientes que faltan
+    connect(dataManager,SIGNAL(receivedSites(QList<QString>)),
+            this,SLOT(slot_Origen(QString,QString)));
+    connect(dataManager,SIGNAL(receivedSites(QList<QString>)),
+            this,SLOT(slot_Destino(QString,QString)));
 }
 
 Ventana::~Ventana()
@@ -28,7 +30,8 @@ void Ventana::slot_probar()
     ui->pteMostrar->clear();
     dataManager->getCoordinates(ui->leDireccion->text());
 
-    //agregar aca los pedidos get para obtener datos
+    dataManager->getOrigen(ui->lePartida->text());
+    dataManager->getDestino(ui->leLlegada->text());
 }
 
 void Ventana::slot_coordenadasRecibidas(QList<QString> lista)
@@ -56,4 +59,22 @@ void Ventana::slot_lugaresRecibidos(QList<QString> lista)
     }
 
     ui->pteMostrar->appendPlainText("\n");
+}
+
+void Ventana::slot_Origen(QString Olat, QString Olng){
+
+    ui->pteMostrar->appendPlainText("-Coordenadas de ORIGEN: \n");
+
+    ui->pteMostrar->appendPlainText("-LATITUD: "+Olat);
+    ui->pteMostrar->appendPlainText("-LONGITUD: "+Olng);
+
+}
+
+void Ventana::slot_Destino(QString Dlat, QString Dlng){
+
+    ui->pteMostrar->appendPlainText("-Coordenadas de DESTINO: \n");
+
+    ui->pteMostrar->appendPlainText("-LATITUD: "+Dlat);
+    ui->pteMostrar->appendPlainText("-LONGITUD: "+Dlng);
+
 }

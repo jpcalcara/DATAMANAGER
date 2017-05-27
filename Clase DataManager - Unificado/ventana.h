@@ -25,6 +25,8 @@ private slots:
     void slot_probar();
     void slot_coordenadasRecibidas(QList<QString> lista);
     void slot_lugaresRecibidos(QList<QString> lista);
+    void slot_Origen(QString Olat, QString Olng);
+    void slot_Destino(QString Dlat, QString Dlng);
 };
 
 #endif // VENTANA_H

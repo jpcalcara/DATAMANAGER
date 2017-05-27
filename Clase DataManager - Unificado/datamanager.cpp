@@ -1,12 +1,17 @@
 #include "datamanager.h"
+#include <QFile>
 
 DataManager::DataManager()
 {
     managerCoordinates = new QNetworkAccessManager();
     managerSites = new QNetworkAccessManager();
+    managerDestino = new QNetworkAccessManager();
+    managerOrigen = new QNetworkAccessManager();
 
     connect(managerSites,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getSites(QNetworkReply *)));
     connect(managerCoordinates,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getCoordinates(QNetworkReply *)));
+    connect(managerOrigen,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getOrigen(QNetworkReply *)));
+    connect(managerDestino,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getDestino(QNetworkReply *)));
 }
 
 DataManager::~DataManager()
@@ -14,24 +19,23 @@ DataManager::~DataManager()
 
 }
 
-void DataManager::pedirTiempo()
-{
+void DataManager::getDestino(QString end){
+
+    QString destino = "&destination=";
+    destino += end;
+    destino += "&key=AIzaSyAIUs8bUuj4nvBIMi2onO3qkrQsSnML8mk";
+
+    managerDestino->get(QNetworkRequest(QUrl(destino)));
 
 }
 
-void DataManager::pedirDistancia()
-{
+void DataManager::getOrigen(QString start){
 
-}
+    QString origen = "https://maps.googleapis.com/maps/api/directions/xml?origin=";
+    origen += start;
+    origen += "&key=AIzaSyAIUs8bUuj4nvBIMi2onO3qkrQsSnML8mk";
 
-void DataManager::pedirPartida()
-{
-
-}
-
-void DataManager::pedirLlegada()
-{
-
+    managerOrigen->get(QNetworkRequest(QUrl(origen)));
 }
 
 /* Devuelve en un SIGNAL receivedCoordinates() un QList con las dos
@@ -86,7 +90,78 @@ void DataManager::slot_getSites(QNetworkReply *reply)
     emit  receivedSites(list);
 }
 
-void DataManager::slot_xmlDownload(QNetworkReply *reply)
+void DataManager::slot_getTiempo(QNetworkReply *reply)
 {
 
 }
+
+void DataManager::slot_getDistancia(QNetworkReply *reply)
+{
+
+}
+
+void DataManager::slot_getOrigen(QNetworkReply *reply){
+
+    QByteArray ba = reply->readAll();
+    QString origen;
+
+    if(ba.indexOf("<start_location>") && ba.indexOf("</start_location>") )
+
+    origen = ba.mid(871,93);
+    //qDebug()<< origen; // muestra todo el <start_location>
+
+    origen.indexOf("<lat>");qDebug()<<origen.indexOf("<lat>");//muestra el indice de comienzo
+    origen.indexOf("</lat>");qDebug()<<origen.indexOf("</lat>");//muestra el indice de final
+    QString Olat = origen.mid(27,10);// guardo en un string la latitud origen
+    qDebug()<<Olat;
+
+    origen.indexOf("<lng>");qDebug()<<origen.indexOf("<lng>");//muestra el indice de comienzo
+    origen.indexOf("</lng>");qDebug()<<origen.indexOf("</lng>");//muestra el indice de final
+    QString Olng = origen.mid(54,11);
+    qDebug()<<Olng;
+
+   // qDebug()<< "---PUNTO DE ORIGEN---";
+    //qDebug()<< "-LATITUD: "+Olat;
+    //qDebug()<< "-LONGITUD: "+Olng;
+    //qDebug()<< "---------------------";
+
+    //ui->pteTexto->appendPlainText("---PUNTO DE ORIGEN---");
+    //ui->pteTexto->appendPlainText("-LATITUD: "+Olat);
+    //ui->pteTexto->appendPlainText("-LONGITUD: "+Olng);
+   // ui->pteTexto->appendPlainText("---------------------");
+
+    emit signalOrigen(Olat,Olng);
+
+}
+
+void DataManager::slot_getDestino(QNetworkReply *reply){
+
+    QByteArray ba = reply->readAll();
+    QString destino;
+
+    destino = ba.mid(969,89);
+    //qDebug()<< destino;//muestra todo el <end_location>
+
+    destino.indexOf("<lat>");qDebug()<<destino.indexOf("<lat>");//muestra el indice de comienzo
+    destino.indexOf("</lat>");qDebug()<<destino.indexOf("</lat>");//muestra el indice de final
+    QString Dlat = destino.mid(25,10);//guardo en un string la latitud destino
+    qDebug()<<Dlat;
+
+    destino.indexOf("<lng>");qDebug()<<destino.indexOf("<lng>");//muestra el indice de comienzo
+    destino.indexOf("</lng>");qDebug()<<destino.indexOf("</lng>");//muestra el indice de final
+    QString Dlng = destino.mid(52,11);//guardo en un string la longitud destino
+    qDebug()<<Dlng;
+
+   // qDebug()<< "---PUNTO DE DESTINO---";
+    //qDebug()<< "-LATITUD: "+Dlat;
+    //qDebug()<< "-LONGITUD: "+Dlng;
+    //qDebug()<< "---------------------";
+/*
+    ui->pteTexto->appendPlainText("---PUNTO DE DESTINO---");
+    ui->pteTexto->appendPlainText("-LATITUD: "+Dlat);
+    ui->pteTexto->appendPlainText("-LONGITUD: "+Dlng);
+    ui->pteTexto->appendPlainText("----------------------");
+*/
+    emit signalDestino(Dlat,Dlng);
+}
+
