@@ -1,0 +1,92 @@
+<DirectionsResponse>
+<status>OK</status>
+ <geocoded_waypoint>
+  <geocoder_status>OK</geocoder_status>
+  <type>locality</type>
+  <type>political</type>
+  <place_id>ChIJ7cv00DwsDogRAMDACa2m4K8</place_id>
+ </geocoded_waypoint>
+ <geocoded_waypoint>
+  <geocoder_status>OK</geocoder_status>
+  <type>locality</type>
+  <type>political</type>
+  <place_id>ChIJ69Pk6jdlyIcRDqM1KDY3Fpg</place_id>
+ </geocoded_waypoint>
+ <geocoded_waypoint>
+  <geocoder_status>OK</geocoder_status>
+  <type>locality</type>
+  <type>political</type>
+  <place_id>ChIJgdL4flSKrYcRnTpP0XQSojM</place_id>
+ </geocoded_waypoint>
+ <geocoded_waypoint>
+  <geocoder_status>OK</geocoder_status>
+  <type>locality</type>
+  <type>political</type>
+  <place_id>ChIJE9on3F3HwoAR9AhGJW_fL-I</place_id>
+ </geocoded_waypoint>
+ <route>
+  <summary>I-40 W</summary>
+  <leg>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>41.8507300</lat>
+     <lng>-87.6512600</lng>
+    </start_location>
+    <end_location>
+     <lat>41.8525800</lat>
+     <lng>-87.6514100</lng>
+    </end_location>
+    <polyline>
+     <points>a~l~Fjk~uOwHJy@P</points>
+    </polyline>
+    <duration>
+     <value>19</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Head <b>north</b> on <b>S Morgan St</b> toward <b>W Cermak Rd</b></html_instructions>
+    <distance>
+     <value>207</value>
+     <text>0.1 mi</text>
+    </distance>
+   </step>
+   ...
+   ... additional steps of this leg
+  ...
+  ... additional legs of this route
+   <duration>
+    <value>74384</value>
+    <text>20 hours 40 mins</text>
+   </duration>
+   <distance>
+    <value>2137146</value>
+    <text>1,328 mi</text>
+   </distance>
+   <start_location>
+    <lat>35.4675602</lat>
+    <lng>-97.5164276</lng>
+   </start_location>
+   <end_location>
+    <lat>34.0522342</lat>
+    <lng>-118.2436849</lng>
+   </end_location>
+   <start_address>Oklahoma City, OK, USA</start_address>
+   <end_address>Los Angeles, CA, USA</end_address>
+  <copyrights>Map data ©2010 Google, Sanborn</copyrights>
+  <overview_polyline>
+   <points>a~l~Fjk~uOnzh@vlbBtc~@tsE`vnApw{A`dw@~w\|tNtqf@l{Yd_Fblh@rxo@b}@xxSfytAblk@xxaBeJxlcBb~t@zbh@jc|Bx}C`rv@rw|@rlhA~dVzeo@vrSnc}Axf]fjz@xfFbw~@dz{A~d{A|zOxbrBbdUvpo@`cFp~xBc`Hk@nurDznmFfwMbwz@bbl@lq~@loPpxq@bw_@v|{CbtY~jGqeMb{iF|n\~mbDzeVh_Wr|Efc\x`Ij{kE}mAb~uF{cNd}xBjp]fulBiwJpgg@|kHntyArpb@bijCk_Kv~eGyqTj_|@`uV`k|DcsNdwxAott@r}q@_gc@nu`CnvHx`k@dse@j|p@zpiAp|gEicy@`omFvaErfo@igQxnlApqGze~AsyRzrjAb__@ftyB}pIlo_BflmA~yQftNboWzoAlzp@mz`@|}_@fda@jakEitAn{fB_a]lexClshBtmqAdmY_hLxiZd~XtaBndgC</points>
+  </overview_polyline>
+  <waypoint_index>0</waypoint_index>
+  <waypoint_index>1</waypoint_index>
+  <bounds>
+   <southwest>
+    <lat>34.0523600</lat>
+    <lng>-118.2435600</lng>
+   </southwest>
+   <northeast>
+    <lat>41.8781100</lat>
+    <lng>-87.6297900</lng>
+   </northeast>
+  </bounds>
+ </route>
+</DirectionsResponse>
