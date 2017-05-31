@@ -1,14 +1,19 @@
-#include<QApplication>
-#include "ventana.h"
-#include<QNetworkProxyFactory>
+#include <QApplication>
+#include <QNetworkProxyFactory>
 
-int main(int argc, char **argv)
+#include "interfaz.h"
+
+int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 
-    Ventana b;
-    b.show();
+    Interfaz w;
+
+    w.setFixedSize(253,400);
+    w.show();
+
 
     return a.exec();
 }
