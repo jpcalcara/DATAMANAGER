@@ -10,15 +10,15 @@ DataManager::DataManager()
 
     connect(managerSites,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getSites(QNetworkReply *)));
     connect(managerCoordinates,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getCoordinates(QNetworkReply *)));
-    connect(managerOrigen,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getOrigen(QNetworkReply *)));
-    connect(managerDestino,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getDestino(QNetworkReply *)));
+    connect(managerOrigen,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getOrigen(QNetworkReply *)));//obtenemos origen 
+    connect(managerDestino,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_getDestino(QNetworkReply *)));//obtnemos destino
 }
 
 DataManager::~DataManager()
 {
 
 }
-
+// se obtiene desde la url el contenido de destino
 void DataManager::getDestino(QString end){
 
     QString destino = "&destination=";
@@ -28,7 +28,7 @@ void DataManager::getDestino(QString end){
     managerDestino->get(QNetworkRequest(QUrl(destino)));
 
 }
-
+// se obtiene desde la url el contenido de origen
 void DataManager::getOrigen(QString start){
 
     QString origen = "https://maps.googleapis.com/maps/api/directions/xml?origin=";
@@ -89,17 +89,7 @@ void DataManager::slot_getSites(QNetworkReply *reply)
 
     emit  receivedSites(list);
 }
-
-void DataManager::slot_getTiempo(QNetworkReply *reply)
-{
-
-}
-
-void DataManager::slot_getDistancia(QNetworkReply *reply)
-{
-
-}
-
+//Se emiten los parametros de latitud(Origen) y longitud(Origen) obtenidos luego de la lectura del XML
 void DataManager::slot_getOrigen(QNetworkReply *reply){
 
     QByteArray ba = reply->readAll();
@@ -134,6 +124,7 @@ void DataManager::slot_getOrigen(QNetworkReply *reply){
 
 }
 
+//se emiten los parametros de latitud(Destino) y longitud(Destino) obtenidos luego de la lectura del XML
 void DataManager::slot_getDestino(QNetworkReply *reply){
 
     QByteArray ba = reply->readAll();
