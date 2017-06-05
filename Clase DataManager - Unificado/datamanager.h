@@ -28,6 +28,7 @@ public:
     //void getDistancia();
     void getOrigen(QString start);// permite obtener la latitud y longitud del origen
     void getDestino(QString end); //permite obtener la latitud y longitud del destino
+    void getMaps(QString);//devuelve el mapa con el trayecto
     void getCoordinates(QString street);
     void getSites(QString search, QList<QString> coord);
 
@@ -50,4 +51,5 @@ signals:
    // void signalDistancia(QString, QString); //falta asignar lectura
     void signalOrigen(QString, QString);
     void signalDestino(QString, QString);
+    void signalMaps(QImage);
 };
