@@ -10,20 +10,6 @@ ReadXml::ReadXml(QWidget *parent) :
     ui(new Ui::ReadXml)
 {
     ui->setupUi(this);
-    //para generar un archivo XML nuevo
-   /* QFile xml("nuevo.xml");
-    xml.open(QIODevice::WriteOnly);
-    QXmlStreamWriter escritorXml(&xml);
-    QXmlStreamReader lectorXml(&xml);
-
-    escritorXml.writeStartDocument();
-    escritorXml.writeEndDocument();
-
-    QFile salida("nuevo.xml");
-    salida.open(QIODevice::ReadOnly);
-    QTextStream leer(&salida);
-    salida.close();
-*/
     manager = new QNetworkAccessManager;
     ReadXml dataxml;// DataManager data cuando cambie el nombre de la clase a la correspondiente
     connect(ui->pbAbrir, SIGNAL(clicked()), this, SLOT(slot_abrirXML())); //Cargar desde disco archivo XML
@@ -39,16 +25,6 @@ ReadXml::~ReadXml()
 
 void ReadXml::slot_abrirXML()
 {
-    /*QString files = QFileDialog::getOpenFileName(this, "Abrir", "./", "XML (*.xml)");
-    QFile *file = new QFile(files);
-    if ( !file->open (QIODevice::ReadOnly | QIODevice::Text) )
-        return;
-     while ( !file->atEnd() )  {
-         QByteArray linea = file->readAll();
-         qDebug() << linea;
-       }
-*/
-
     auto filename = QFileDialog::getOpenFileName(this, "Abrir", "./", "XML (*.xml)");
     if(filename.isEmpty()){
         return;
@@ -107,10 +83,5 @@ void ReadXml::slot_abrirXML()
         }
        // QByteArray linea = file.readAll();
         //qDebug() << linea.size();
-
-}
-
-void ReadXml::slot_xmlDownload(QNetworkReply *reply){
-
 
 }
