@@ -243,36 +243,3 @@ void LeerXML::slot_readXML()
 
 }
 
-/*void LeerXML::slot_getStart(QNetworkReply *reply){
-
-    QByteArray ba = file.readAll();
-    QString origen;
-
-    if(ba.indexOf("<start_location>") && ba.indexOf("</start_location>") ){
-
-    origen = ba.mid(871,93);
-    qDebug()<< origen; // muestra todo el <start_location>
-
-    origen.indexOf("<lat>");qDebug()<<origen.indexOf("<lat>");//muestra el indice de comienzo
-    origen.indexOf("</lat>");qDebug()<<origen.indexOf("</lat>");//muestra el indice de final
-    QString Olat = origen.mid(27,10);// guardo en un string la latitud origen
-    qDebug()<<Olat;
-
-    origen.indexOf("<lng>");qDebug()<<origen.indexOf("<lng>");//muestra el indice de comienzo
-    origen.indexOf("</lng>");qDebug()<<origen.indexOf("</lng>");//muestra el indice de final
-    QString Olng = origen.mid(54,11);
-    qDebug()<<Olng;
-
-    qDebug()<< "---PUNTO DE ORIGEN---";
-    qDebug()<< "-LATITUD: "+Olat;
-    qDebug()<< "-LONGITUD: "+Olng;
-    qDebug()<< "---------------------";
-
-    ui->pteTexto->appendPlainText("---PUNTO DE ORIGEN---");
-    ui->pteTexto->appendPlainText("-LATITUD: "+Olat);
-    ui->pteTexto->appendPlainText("-LONGITUD: "+Olng);
-    ui->pteTexto->appendPlainText("---------------------");
-
-    emit signalStart(Olat,Olng);
-}
-*/
