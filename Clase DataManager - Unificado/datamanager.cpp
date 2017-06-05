@@ -154,5 +154,35 @@ void DataManager::slot_getDestino(QNetworkReply *reply){
     ui->pteTexto->appendPlainText("----------------------");
 */
     emit signalDestino(Dlat,Dlng);
+    
+    //OTRA FORMA D E  OBTENER LOS PARAMETROS DE LAT Y LONG
+    /*
+    QDomDocument doc;
+    QByteArray xml = doc.toByteArray();
+    xml = reply->readAll();
+    
+    QDomElement root = doc.documentElement();//se extrae la Raiz //<DirectionsResponse>
+    QDomElement childRoot1 = root.firstChild().toElement();//obtengo el primer hijo de la raiz //<route>
+    QDomElement childRoot2 = root.firstChild().nextSibling().toElement(); // <route>
+    QDomElement childRoute2 = childRoot2.firstChild().nextSibling().toElement(); // <leg>
+    QDomElement childLeg1 = childRoute2.firstChild().toElement(); //<step>
+    QDomElement childStart = childLeg1.firstChild().nextSibling().toElement();//start
+
+    QString lat,lat2,lng,lng2,time,dist;
+    QDomElement childEnd = childLeg1.firstChild().nextSibling().nextSibling().toElement();//end
+    QDomElement childTime = childEnd.nextSibling().nextSibling().toElement(); //duration
+    QDomElement childDistance = childTime.nextSibling().nextSibling().toElement(); //distance
+
+    while(!childLeg1.isNull()){
+
+     if(childLeg1.tagName() == "start_location"){
+           lat = childStart.firstChild().toElement().text();
+           lng = childStart.firstChild().nextSibling().toElement().text();
+      }
+
+     emit signalOrigen(lat,lng);
+     qDebug()<<"-Latitud :"+lat;
+     qDebug()<<"-Longitud :"+lng;
+     */
 }
 
