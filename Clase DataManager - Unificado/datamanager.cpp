@@ -185,4 +185,9 @@ void DataManager::slot_getDestino(QNetworkReply *reply){
      qDebug()<<"-Longitud :"+lng;
      */
 }
-
+void DataManager::slot_getMaps(QNetworkReply *reply)
+{
+    QImage im = QImage::fromData(reply->readAll());
+    
+    emit signalMaps(im);
+}
