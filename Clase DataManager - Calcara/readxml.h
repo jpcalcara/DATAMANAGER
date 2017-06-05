@@ -12,7 +12,7 @@ namespace Ui {
 class ReadXml;
 }
 
-class ReadXml : public QWidget // tiene que heredad de QObject porque no usa interfaz esta clase
+class ReadXml : public QWidget
 {
     Q_OBJECT
 
